@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FC656762851C96200ED4BD7 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6FC656752851C96200ED4BD7 /* index.html */; };
 		6FD5885D285062BC009059CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD5885C285062BC009059CB /* AppDelegate.swift */; };
 		6FD5885F285062BC009059CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD5885E285062BC009059CB /* SceneDelegate.swift */; };
 		6FD58861285062BC009059CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD58860285062BC009059CB /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6FC656752851C96200ED4BD7 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		6FD58859285062BC009059CB /* WebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD5885C285062BC009059CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FD5885E285062BC009059CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				6FD58862285062BC009059CB /* Main.storyboard */,
 				6FD58865285062BD009059CB /* Assets.xcassets */,
 				6FD58867285062BD009059CB /* LaunchScreen.storyboard */,
+				6FC656752851C96200ED4BD7 /* index.html */,
 				6FD5886A285062BD009059CB /* Info.plist */,
 			);
 			path = WebViewDemo;
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FD58869285062BD009059CB /* LaunchScreen.storyboard in Resources */,
+				6FC656762851C96200ED4BD7 /* index.html in Resources */,
 				6FD58866285062BD009059CB /* Assets.xcassets in Resources */,
 				6FD58864285062BC009059CB /* Main.storyboard in Resources */,
 			);
@@ -439,6 +443,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WebViewDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Web View";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -466,6 +471,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WebViewDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Web View";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
