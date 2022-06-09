@@ -26,6 +26,7 @@ class ViewController: UIViewController, WKScriptMessageHandler {
 
     private func loadPage() {
         // test web view using html for testing and triger native callback from javascript
+        
 //        if let url = Bundle.main.url(forResource: "index", withExtension: "html") {
 //                    self.wkWebView.load(URLRequest(url: url))
 //                }
@@ -43,14 +44,24 @@ class ViewController: UIViewController, WKScriptMessageHandler {
     }
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if let bodyString = message.body as? String {
-            self.showToast(controller: self, message: bodyString, seconds: 1)
-        } else {
-            self.showToast(controller: self, message: "Call back function", seconds: 1)
+        if let data = message.body as? [String : String], let type = data["type"], let msg = data["msg"] {
+            if type == "addToCart" {
+                self.addToCart(proudctid: msg)
+            }
+            if type == "removeFromCart" {
+                self.removeFromCart(proudctid: msg)
+            }
+            if(type == "showToast") {
+                self.showToast(controller: self, message: msg, seconds: 2)
+            }
         }
     }
 
     private func addToCart(proudctid: String) {
+        
+    }
+    
+    private func removeFromCart(proudctid: String) {
         
     }
 

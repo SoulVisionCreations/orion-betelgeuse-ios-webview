@@ -7,7 +7,11 @@
   <title>WebView</title>
   <script type="text/javascript">
     function callbackfun() {
-      window.webkit.messageHandlers.avataarCallBack.postMessage(document.getElementById("msg").value);
+        const message = {
+            type: 'showToast',
+            msg: document.getElementById("msg").value
+        }
+      window.webkit.messageHandlers.avataarCallBack.postMessage(message);
     }
   </script>
 </head>
