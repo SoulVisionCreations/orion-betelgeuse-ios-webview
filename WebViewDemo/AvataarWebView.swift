@@ -33,15 +33,19 @@ class AvataarWebView: UIViewController, WKScriptMessageHandler {
 
     public func getWKWebViewConfiguration() -> WKWebViewConfiguration {
         let userController = WKUserContentController()
+        // call back handler for webView Javascript
         userController.add(self, name: "avataarCallBack")
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userController
         return configuration
     }
 
-   // A WKUserContentController object provides a bridge between your app and the JavaScript code running in the
-   // web view and allow to call custom JavaScript and Native App functions that call through to your web and
-   // native app code.
+    // A WKUserContentController object provides a bridge between your app and the JavaScript code running in the
+    // web view. Use this method to respond to a message sent from the webpage’s JavaScript code and
+    // This method attaches the Javascript bridge Object with webView window object.
+    // The methods inside this object can now be accessed through
+    // window.webkit.messageHandlers.avataarCallBack.postMessage inside webView context.
+    // Example: window.webkit.messageHandlers.avataarCallBack.postMessage(YOUR_MESSAGE);
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let bodyString = message.body as? String,
                  let bodyData = bodyString.data(using: .utf8) else {
