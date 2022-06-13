@@ -10,7 +10,7 @@ This repository contains sample code for integrating Avataar experience URL into
 
 ## Key Files
 
-- ViewController.swift: This is main ViewController, The ViewController passes on the prodcutId and variantId to the AvataarWebView. Before open webview it will invole camerea access after authorise to the app, It will invoke a openWebView method, which is inherited from AvataarWebView. 
+- ViewController.swift: This is main ViewController, The ViewController passes on the prodcutId and variantId to the AvataarWebView. Before open webview it will invoke camerea access and after authorise to the app, It will call a openWebView method, which is inherited from AvataarWebView. 
 - AvataarWebView.swift: This class contains the boilerplate code to invoke the actual Avataar Web experience. This triggers the Avataar experience URL. This takes the productID and variantID from the ViewController above. It has a method called #"userContentController" and It provides a bridge between your app and the JavaScript code running in the web view. Use this method to respond to a message sent from the webpage’s JavaScript code and This method attaches the Javascript bridge Object with webView window object.
 
 ## Operation
