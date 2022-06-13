@@ -8,10 +8,11 @@
   <script type="text/javascript">
     function callbackfun() {
         const message = {
-            type: 'showToast',
-            msg: document.getElementById("msg").value
+            type: 'addToCart',
+            productId:'158',
+            variantId: '168'
         }
-      window.webkit.messageHandlers.avataarCallBack.postMessage(message);
+      window.webkit.messageHandlers.avataarCallBack.postMessage(JSON.stringify(message));
     }
   </script>
 </head>

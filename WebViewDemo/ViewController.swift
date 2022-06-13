@@ -9,88 +9,33 @@ import UIKit
 import WebKit
 import AVFoundation
 
-class ViewController: UIViewController, WKScriptMessageHandler {
+class ViewController: AvataarWebView {
+    private var productId: String! = "158"
+    private var variantId: String! = "168"
     
-    private var wkWebView: WKWebView!
-    
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.setupWKWebview()
-        self.checkCameraPermission()
-    }
-
-    private func setupWKWebview() {
-        self.wkWebView = WKWebView(frame: self.view.bounds, configuration: self.getWKWebViewConfiguration())
-        self.view.addSubview(self.wkWebView)
-    }
-
-    private func loadPage() {
-        // test web view using html for testing and triger native callback from javascript
-        
-//        if let url = Bundle.main.url(forResource: "index", withExtension: "html") {
-//                    self.wkWebView.load(URLRequest(url: url))
-//                }
-        if let url = URL(string: "https://orion-dev.avataar.me/engine/AVTR-TNT-t8mv4evu/AVTR_EXP_d41d8cd9/index.html?ar=0&mode=renderer&tenantId=AVTR-TNT-t8mv4evu&productId=168") {
-            self.wkWebView.load(URLRequest(url: url))
-        }
-    }
-
-    private func getWKWebViewConfiguration() -> WKWebViewConfiguration {
-        let userController = WKUserContentController()
-        userController.add(self, name: "avataarCallBack")
-        let configuration = WKWebViewConfiguration()
-        configuration.userContentController = userController
-        return configuration
-    }
-
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if let data = message.body as? [String : String], let type = data["type"], let msg = data["msg"] {
-            if type == "addToCart" {
-                self.addToCart(proudctid: msg)
-            }
-            if type == "removeFromCart" {
-                self.removeFromCart(proudctid: msg)
-            }
-            if(type == "showToast") {
-                self.showToast(controller: self, message: msg, seconds: 2)
-            }
-        }
-    }
-
-    private func addToCart(proudctid: String) {
-        
+        self.askCameraPermission()
     }
     
-    private func removeFromCart(proudctid: String) {
-        
-    }
-
-    func checkCameraPermission() {
+    // Camera permission is needed to trigger Avataar's experience This sample code asks for camera permission as soon as 3D experience is triggered irrespective of whether 3D experience or AR experience is opened first. This will be a one time permission for an app user.
+    
+    private func askCameraPermission() {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         switch cameraAuthorizationStatus {
             case .notDetermined: requestCameraPermission()
-            case .authorized: loadPage()
+            case .authorized: self.openWebView(productId: self.productId, variantId: self.variantId)
             case .restricted, .denied: print("camera access denied")
-            @unknown default: loadPage()
-    }
+            default: print("camera access denied")
+        }
     }
     
-    func requestCameraPermission() {
+    private func requestCameraPermission() {
         AVCaptureDevice.requestAccess(for: .video, completionHandler: {accessGranted in
             guard accessGranted == true else { return }
-            self.loadPage()
+            self.openWebView(productId: self.productId, variantId: self.variantId)
         })
-    }
-    
-    func showToast(controller: UIViewController, message : String, seconds: Double) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.view.backgroundColor = .black
-        alert.view.alpha = 0.5
-        alert.view.layer.cornerRadius = 15
-        controller.present(alert, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds) {
-            alert.dismiss(animated: true)
-        }
     }
 }
 
