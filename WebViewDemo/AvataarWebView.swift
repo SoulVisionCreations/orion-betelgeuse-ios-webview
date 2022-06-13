@@ -52,8 +52,12 @@ class AvataarWebView: UIViewController, WKScriptMessageHandler {
                 switch(bodyStruct.type) {
                     case "addToCart":
                         addToCart(productId: bodyStruct.productId, variantId: bodyStruct.variantId)
-                    case "removeFromCart" :
+                    case "removeFromCart":
                         removeFromCart(productId: bodyStruct.productId, variantId: bodyStruct.variantId)
+                    case "goToCart":
+                        goToCart()
+                    case "closeWebView":
+                        closeWebView()
                     default:
                         print("Unsupported message")
                 }
@@ -71,12 +75,12 @@ class AvataarWebView: UIViewController, WKScriptMessageHandler {
     }
     
     // Goto Cart
-    func goToCart() -> Void {
+    func goToCart() {
         print("Go to Cart")
     }
-
+    
     //Close View
-    func closeWebView() -> Void {
-        print("clsoe Web View")
+    func closeWebView() {
+            print("Close Web View")
     }
 }
